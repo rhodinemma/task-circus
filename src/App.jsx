@@ -1,4 +1,3 @@
-//import pic from "../assets/profile.jpeg"
 import "./App.css";
 
 
@@ -46,7 +45,7 @@ function App() {
                       Jan 21
                     </small>
                     <div className="text-end">
-                        <img src="/profile.jpeg" alt="dp" className="rounded-circle" width="10px" height="10px" />
+                        <img src="/profle.jpeg" alt="dp" className="rounded-circle" width="30px" height="30px" />
                     </div>
                   </div>
                   <div className="card-footer">
