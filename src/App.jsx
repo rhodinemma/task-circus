@@ -49,8 +49,8 @@ function App() {
                         <img src="/profile.jpeg" alt="dp" className="rounded-circle" width="10px" height="10px" />
                     </div>
                   </div>
-                  <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
+                  <div className="card-footer">
+                    <small className="text-muted">Last updated 3 mins ago</small>
                   </div>
                 </div>
               </div>
@@ -70,8 +70,8 @@ function App() {
                     Jan 30
                   </small>
                 </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
+                <div className="card-footer">
+                    <small className="text-muted">Last updated 3 mins ago</small>
                 </div>
               </div>
             </div>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -92,8 +92,8 @@ function App() {
                     Jan 30
                   </small>
                 </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
+                <div className="card-footer">
+                    <small className="text-muted">Last updated 3 mins ago</small>
                 </div>
               </div>
             </div>&nbsp;&nbsp;&nbsp;&nbsp;
