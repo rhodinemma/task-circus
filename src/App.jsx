@@ -1,34 +1,77 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="container mt-5">
+        <center>
+          <h1 className="mb-5">
+            <i class="fas fa-layer-group"></i> &nbsp;<b>Task Circus</b>
+          </h1>
+        </center>
+
+        <div className="col-lg-12">
+          <div className="row">
+            <div className="col-md-4">
+              <h1>
+                <b>To Do</b>
+              </h1>
+
+              <div className="card border border-5" style={{ width: "18rem" }}>
+                <div className="card-body">
+                  <h5 className="card-title">
+                    Custom Domain for learning apps
+                  </h5>
+                  <small
+                    className="bg-danger p-1 text-white"
+                    style={{ borderRadius: "0.5rem" }}
+                  >
+                    Jan 30
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <h1>
+                <b>Doing</b>
+              </h1>
+
+              <div className="card border border-5" style={{ width: "18rem" }}>
+                <div className="card-body">
+                  <h5 className="card-title">User Onboarding</h5>
+                  <small
+                    className="bg-warning p-1 text-white"
+                    style={{ borderRadius: "0.5rem" }}
+                  >
+                    Jan 30
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <h1>
+                <b>Completed</b>
+              </h1>
+
+              <div className="card border border-5" style={{ width: "18rem" }}>
+                <div className="card-body">
+                  <h5 className="card-title">
+                    Implement manage user section on the admin-user profile
+                  </h5>
+                  <small
+                    className="bg-dark p-1 text-white"
+                    style={{ borderRadius: "0.5rem" }}
+                  >
+                    Jan 30
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
