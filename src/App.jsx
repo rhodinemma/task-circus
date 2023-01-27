@@ -5,7 +5,7 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <div className="container mt-3 pb-5">
+      <div className="container mt-2 pb-5">
         <h1 className="mb-4 pb-2" style={{ borderBottom: "1px solid #ccc" }}>
           <i className="fas fa-layer-group"></i> &nbsp;<b>Task Circus</b>
         </h1>
@@ -25,39 +25,39 @@ function App() {
               <div className="cards">
                 <div
                   className="card border mb-2"
-                  style={{ width: "20rem", borderRadius: "0.5rem" }}
+                  style={{ width: "21.5rem", borderRadius: "0.5rem" }}
                 >
                   <div className="card-body border-bottom p-3">
                     <h5 className="card-title">
                       Custom Domain for learning apps
                     </h5>
-                    <small
-                      className="bg-danger p-1 text-white"
-                      style={{ borderRadius: "0.5rem" }}
-                    >
-                      Jan 30
-                    </small>
-                    <div className="text-end">
-                      <img
-                        src={moses}
-                        alt="dp"
-                        className="rounded-circle"
-                        width="30px"
-                        height="30px"
-                      />
-                      <img
-                        src={rhodin}
-                        alt="dp"
-                        className="rounded-circle"
-                        width="30px"
-                        height="30px"
-                      />
-                    </div>
+                    <div className="bottom--part mt-4 text-end">
+                      <small
+                        className="bg-danger p-1 text-white mt-2"
+                        style={{ borderRadius: "0.5rem" , float:"left"}}
+                      >
+                        Jan 30
+                      </small>
+                        <img
+                          src={moses}
+                          alt="dp"
+                          className="rounded-circle mt-2"
+                          width="30px"
+                          height="30px"
+                        />
+                        <img
+                          src={rhodin}
+                          alt="dp"
+                          className="rounded-circle mt-2"
+                          width="30px"
+                          height="30px"
+                        />
+                   </div>
                   </div>
                 </div>
                 <div
                   className="card border"
-                  style={{ width: "20rem", borderRadius: "0.5rem" }}
+                  style={{ width: "21.5rem", borderRadius: "0.5rem" }}
                 >
                   <div
                     className="card-body border-bottom"
@@ -67,29 +67,30 @@ function App() {
                       Increase Testing Coverage and make logging run
                       asynchronously
                     </h5>
-                    <small
-                      className="bg-danger p-1 text-white"
-                      style={{ borderRadius: "0.5rem" }}
-                    >
-                      Jan 21
-                    </small>
-                    <div className="text-end">
-                      <img
-                        src={moses}
-                        alt="dp"
-                        className="rounded-circle"
-                        width="30px"
-                        height="30px"
-                      />
-                      <img
-                        src={rhodin}
-                        alt="dp"
-                        className="rounded-circle"
-                        width="30px"
-                        height="30px"
-                      />
+                    <div className="bottom--part mt-4 text-end">
+                      <small
+                        className="bg-danger p-1 text-white mt-2"
+                        style={{ borderRadius: "0.5rem" , float:"left"}}
+                      >
+                        Jan 30
+                      </small>
+                        <img
+                          src={moses}
+                          alt="dp"
+                          className="rounded-circle mt-2"
+                          width="30px"
+                          height="30px"
+                        />
+                        <img
+                          src={rhodin}
+                          alt="dp"
+                          className="rounded-circle mt-2"
+                          width="30px"
+                          height="30px"
+                        />
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -106,32 +107,33 @@ function App() {
 
               <div
                 className="card border border-1"
-                style={{ width: "20rem", borderRadius: "0.5rem" }}
+                style={{ width: "21.5rem", borderRadius: "0.5rem" }}
               >
                 <div className="card-body">
                   <h5 className="card-title">User Onboarding</h5>
-                  <small
-                    className="bg-warning p-1 text-white"
-                    style={{ borderRadius: "0.5rem" }}
-                  >
-                    Jan 30
-                  </small>
-                  <div className="text-end">
-                    <img
-                      src={moses}
-                      alt="dp"
-                      className="rounded-circle"
-                      width="30px"
-                      height="30px"
-                    />
-                    <img
-                      src={rhodin}
-                      alt="dp"
-                      className="rounded-circle"
-                      width="30px"
-                      height="30px"
-                    />
-                  </div>
+                  <div className="bottom--part mt-4 text-end">
+                      <small
+                        className="bg-warning p-1 mt-2"
+                        style={{ borderRadius: "0.5rem", float:"left" }}
+                      >
+                        Jan 30
+                      </small>
+                        <img
+                          src={moses}
+                          alt="dp"
+                          className="rounded-circle mt-2"
+                          width="30px"
+                          height="30px"
+                        />
+                        <img
+                          src={rhodin}
+                          alt="dp"
+                          className="rounded-circle mt-2"
+                          width="30px"
+                          height="30px"
+                        />
+                    </div>
+
                 </div>
               </div>
             </div>
@@ -148,34 +150,35 @@ function App() {
 
               <div
                 className="card border border-1"
-                style={{ width: "20rem", borderRadius: "0.5rem" }}
+                style={{ width: "21.5rem", borderRadius: "0.5rem" }}
               >
                 <div className="card-body p-3">
                   <h5 className="card-title">
                     Implement manage user section on the admin-user profile
                   </h5>
-                  <small
-                    className="bg-dark p-1 text-white"
-                    style={{ borderRadius: "0.5rem" }}
-                  >
-                    Jan 30
-                  </small>
-                  <div className="text-end">
-                    <img
-                      src={moses}
-                      alt="dp"
-                      className="rounded-circle"
-                      width="30px"
-                      height="30px"
-                    />
-                    <img
-                      src={rhodin}
-                      alt="dp"
-                      className="rounded-circle"
-                      width="30px"
-                      height="30px"
-                    />
-                  </div>
+                  <div className="bottom--part mt-4 text-end">
+                      <small
+                        className="bg-dark p-1 text-white mt-2"
+                        style={{ borderRadius: "0.5rem" , float:"left"}}
+                      >
+                        Jan 30
+                      </small>
+                        <img
+                          src={moses}
+                          alt="dp"
+                          className="rounded-circle mt-2"
+                          width="30px"
+                          height="30px"
+                        />
+                        <img
+                          src={rhodin}
+                          alt="dp"
+                          className="rounded-circle mt-2"
+                          width="30px"
+                          height="30px"
+                        />
+                    </div>
+
                 </div>
               </div>
             </div>
