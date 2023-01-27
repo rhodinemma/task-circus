@@ -1,3 +1,7 @@
 * {
     font-family: 'Nunito', sans-serif;
 }
+
+.card-body:hover {
+    cursor: pointer;
+}
