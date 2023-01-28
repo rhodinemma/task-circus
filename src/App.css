@@ -4,3 +4,9 @@
 .card-body:hover {
     cursor: pointer;
 }
+.symbols:hover{
+    cursor: pointer;
+}
+.material-icons:hover{
+    background: color #ccc;
+}

@@ -52,6 +52,7 @@ const ToDo = () => {
           <div
             className="card border"
             style={{ width: "20rem", borderRadius: "0.5rem" }}
+            onClick={() => setModalShow(true)}
           >
             <div
               className="card-body border-bottom"
@@ -85,6 +86,16 @@ const ToDo = () => {
             </div>
           </div>
         </div>
+        <div className="mt-1 text-end">
+            <button type="button" className="mb-1 w-75 h-2 text-muted" style={{ borderRadius: "0.3rem" , maxHeight: "auto" ,borderStyle:"none" , float:"left"}}><i className="fas fa-plus mt-1 text-muted" style={{float:"left"}}></i> 
+              Add Task
+            </button>
+            <div className="symbols" style={{float:"left"}}>
+              <i className="material-icons text-muted" data-bs-toggle="tooltip" data-bs-html="true" title="assignments">assignment</i>
+              <span className="material-symbols-outlined" data-bs-toggle="tooltip" data-bs-html="true" title="recommend">recommend</span>
+              <span className="material-symbols-outlined" data-bs-toggle="tooltip" data-bs-html="true" title="group_work">group_work</span>
+            </div>
+         </div>
       </div>
 
       <TaskModal show={modalShow} onHide={() => setModalShow(false)} />
