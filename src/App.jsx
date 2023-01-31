@@ -22,6 +22,41 @@ const todos = [
   },
 ];
 
+const completed = [
+  {
+    title:"Implement manage user section on the admin-user profile",
+    description:"Add the disable and delete button",
+    date:"Jan 10"
+  },
+  {
+    title:"Enable name update for the created app",
+    description:"Make sure the app is updatable",
+    date:"Dec 23"
+  },
+  {
+    title:"Figma designs for cms",
+    description:"Frontend designs for the content management system",
+    date:"Dec 1"
+  },
+];
+const doing = [
+  {
+    title:"User Onboarding",
+    description:"Orientation for new users",
+    date:"Jan 2"
+  },
+  {
+    title:"Working on the platform investigation reports",
+    description:"Platform reports",
+    date:"Jan 5",
+  },
+  {
+    title:"Working on user feedback",
+    description:"User experience and faults on the platform",
+    date:"Jan 6"
+  }
+];
+
 function App() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -52,9 +87,9 @@ function App() {
                 <div className="row">
                   <ToDo data={todos} />
 
-                  <Doing />
+                  <Doing data={doing} />
 
-                  <Completed />
+                  <Completed data={completed} />
                 </div>
               </div>
             </div>

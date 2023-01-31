@@ -100,8 +100,14 @@ const ToDo = ({ data }) => {
           </div>
         </div>
       </div>
-
-      <TaskModal show={modalShow} onHide={() => setModalShow(false)} />
+      
+      <TaskModal 
+      show={modalShow} 
+      onHide={() => setModalShow(false)} 
+      title = {"Custom Domain for learning apps"}
+      description= {"Setup custom domain for learning apps"}
+      date = {"Jan 31"}
+      />
     </>
   );
 };
