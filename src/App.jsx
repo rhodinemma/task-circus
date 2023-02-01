@@ -68,22 +68,22 @@ function App() {
     <>
       {loading ? (
         <center>
-          <h3 className="mt-5 pt-5 text-center">
-            <b>loading..................</b>
-          </h3>
+          <div class="spinner-border mt-5 text-center " role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
         </center>
       ) : (
         <>
           <div className="App">
-            <div className="container mt-2 pb-5">
+            <div className="container mt-2 pb-2">
               <h1
                 className="mb-4 pb-2"
-                style={{ borderBottom: "1px solid #ccc" }}
+                style={{ borderBottom: "1px solid #ccc"}}
               >
                 <i className="fas fa-layer-group"></i> &nbsp;<b>Task Circus</b>
               </h1>
 
-              <div className="col-12 card-deck">
+              <div className="col-12 card-deck mt-2 pb-2">
                 <div className="row">
                   <ToDo data={todos} />
 

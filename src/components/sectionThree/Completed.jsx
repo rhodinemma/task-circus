@@ -1,11 +1,13 @@
 import React, {useState} from "react";
 import moses from "../../assets/moses.jpeg";
 import rhodin from "../../assets/rhodin.jpg";
-import TaskModal from "../modal/index";
+import {Modal} from "react-bootstrap";
 
 const Completed = ({data}) => {
   console.log(data);
-  const [modalShow, setModalShow] = useState(false);
+  const [completedModal,setCompletedModal] = useState(false);
+  const handleCompletedClose= ()=> setCompletedModal(false);
+
   return (
     <>
       <div
@@ -20,8 +22,8 @@ const Completed = ({data}) => {
             <div
               className="card border border-1 mb-2"
               style={{ width: "20rem", borderRadius: "0.5rem" }}
-              onClick={()=> setModalShow(true)}
               key={index}
+              onClick={()=>setCompletedModal(true)}
             >
               <div className="card-body p-3">
                 <h5 className="card-title">
@@ -31,27 +33,37 @@ const Completed = ({data}) => {
                   <small
                     className="bg-dark p-1 text-white mt-2"
                     style={{ borderRadius: "0.5rem", float: "left" }}
+                    data-bs-toggle="tooltip"
+                    data-bs-html="true"
+                    title={completed.date}
                   >
                     {completed.date}
                   </small>
                   <img
-                    src={moses}
-                    alt="dp"
-                    className="rounded-circle mt-2"
-                    width="30px"
-                    height="30px"
-                  />
-                  <img
-                    src={rhodin}
-                    alt="dp"
-                    className="rounded-circle mt-2"
-                    width="30px"
-                    height="30px"
-                  />
+                      src={moses}
+                      alt="dp"
+                      className="rounded-circle mt-2"
+                      width="30px"
+                      height="30px"
+                      data-bs-toggle="tooltip"
+                      data-bs-html="true"
+                      title="mosesmulumba"
+                    />
+                    <img
+                      src={rhodin}
+                      alt="dp"
+                      className="rounded-circle mt-2"
+                      width="30px"
+                      height="30px"
+                      data-bs-toggle="tooltip"
+                      data-bs-html="true"
+                      title="rhodinemma"
+                    />
                 </div>
               </div>
             </div>
             </>
+            
           ))}
             <div className="mt-1 text-end">
                 <button type="button" className="mb-1 w-75 h-2 text-muted" style={{ borderRadius: "0.3rem" , maxHeight: "auto" ,borderStyle:"none" , float:"left"}}><i className="fas fa-plus mt-1 text-muted" style={{float:"left"}}></i> 
@@ -64,14 +76,21 @@ const Completed = ({data}) => {
                 </div>
             </div>
           </div>
-        
-          <TaskModal 
-          show={modalShow} 
-          onHide={() => setModalShow(false)} 
-          title = {"Custom Domain for learning apps"}
-          description= {"Setup custom domain for learning apps"}
-          date = {"Jan 31"}
-          />
+          <Modal
+                keyboard={false}
+                show={completedModal} 
+                onHide={handleCompletedClose}
+              >
+              <Modal.Header closeButton>
+              <Modal.Title><h2 className='mt-3'>Completed Section</h2></Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <h3>Implement manage user section on the admin-user profile</h3>
+                <p>Add the disable and delete button</p>
+
+              </Modal.Body>
+          </Modal>
+
     </>
   );
 };
