@@ -1,52 +1,66 @@
 import React , {useState} from "react";
 import moses from "../../assets/moses.jpeg";
 import rhodin from "../../assets/rhodin.jpg";
-import TaskModal from "../modal/index";
+import Modal from "react-bootstrap/Modal";
 import "../../App.css";
 
-const Doing = () => {
-  const [modalShow , setModalShow]  = useState(false);
+const Doing = ({data}) => {
+  const [doingModal, setDoingModal] = useState(false);
+  const handleDoingClose =()=> setDoingModal(false);
   return (
     <>
       <div
         className="col-sm-4 card-header card"
-        style={{ borderRadius: "0.7rem" , maxHeight:"40vh"}}
+        style={{ borderRadius: "0.7rem"}}
       >
         <h1 className="card-header mb-3" style={{ borderRadius: "0.7rem" }}>
           <b>Doing</b>
         </h1>
-
-        <div
-          className="card border border-1"
-          style={{ width: "20rem", borderRadius: "0.5rem" }}
-          onClick = {()=> setModalShow(true)}
-        >
-          <div className="card-body">
-            <h5 className="card-title">User Onboarding</h5>
-            <div className="bottom--part mt-4 text-end">
-              <small
-                className="bg-warning p-1 mt-2"
-                style={{ borderRadius: "0.5rem", float: "left" }}
-              >
-                Jan 30
-              </small>
-              <img
-                src={moses}
-                alt="dp"
-                className="rounded-circle mt-2"
-                width="30px"
-                height="30px"
-              />
-              <img
-                src={rhodin}
-                alt="dp"
-                className="rounded-circle mt-2"
-                width="30px"
-                height="30px"
-              />
-            </div>
-          </div>
-        </div> 
+        {data.map((doing,index)=>(
+          <>
+            <div
+              className="card border border-1 mb-2"
+              style={{ width: "20rem", borderRadius: "0.5rem" }}
+              onClick = {()=> setDoingModal(true)}
+              key={index}
+            >
+              <div className="card-body">
+                <h5 className="card-title">{doing.title}</h5>
+                <div className="bottom--part mt-4 text-end">
+                  <small
+                    className="bg-warning p-1 mt-2"
+                    style={{ borderRadius: "0.5rem", float: "left" }}
+                    data-bs-toggle="tooltip"
+                    data-bs-html="true"
+                    title={doing.date}
+                  >
+                    {doing.date}
+                  </small>
+                  <img
+                      src={moses}
+                      alt="dp"
+                      className="rounded-circle mt-2"
+                      width="30px"
+                      height="30px"
+                      data-bs-toggle="tooltip"
+                      data-bs-html="true"
+                      title="mosesmulumba"
+                    />
+                    <img
+                      src={rhodin}
+                      alt="dp"
+                      className="rounded-circle mt-2"
+                      width="30px"
+                      height="30px"
+                      data-bs-toggle="tooltip"
+                      data-bs-html="true"
+                      title="rhodinemma"
+                    />
+                </div>
+              </div>
+            </div> 
+          </>
+        ))}
          <div className="mt-1 text-end">
             <button type="button" className="mb-1 w-75 h-2 text-muted" style={{ borderRadius: "0.3rem" , maxHeight: "auto" ,borderStyle:"none" , float:"left"}}><i className="fas fa-plus mt-1 text-muted" style={{float:"left"}}></i> 
               Add Task
@@ -58,7 +72,19 @@ const Doing = () => {
             </div>
          </div>
       </div>
-      <TaskModal show={modalShow}  onHide = {() => setModalShow(false)} />
+      <Modal
+                keyboard={false}
+                show={doingModal} 
+                onHide={handleDoingClose}
+              >
+              <Modal.Header closeButton>
+              <Modal.Title><h2 className='mt-3'>Doing Section</h2></Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <h3>User Onboarding</h3>
+                <p>Orientation for new users</p>
+              </Modal.Body>
+          </Modal> 
     </>
   );
 };

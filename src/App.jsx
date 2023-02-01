@@ -22,6 +22,41 @@ const todos = [
   },
 ];
 
+const completed = [
+  {
+    title:"Implement manage user section on the admin-user profile",
+    description:"Add the disable and delete button",
+    date:"Jan 10"
+  },
+  {
+    title:"Enable name update for the created app",
+    description:"Make sure the app is updatable",
+    date:"Dec 23"
+  },
+  {
+    title:"Figma designs for cms",
+    description:"Frontend designs for the content management system",
+    date:"Dec 1"
+  },
+];
+const doing = [
+  {
+    title:"User Onboarding",
+    description:"Orientation for new users",
+    date:"Jan 2"
+  },
+  {
+    title:"Working on the platform investigation reports",
+    description:"Platform reports",
+    date:"Jan 5",
+  },
+  {
+    title:"Working on user feedback",
+    description:"User experience and faults on the platform",
+    date:"Jan 6"
+  }
+];
+
 function App() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -33,28 +68,28 @@ function App() {
     <>
       {loading ? (
         <center>
-          <h3 className="mt-5 pt-5 text-center">
-            <b>loading..................</b>
-          </h3>
+          <div class="spinner-border mt-5 text-center " role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
         </center>
       ) : (
         <>
           <div className="App">
-            <div className="container mt-2 pb-5">
+            <div className="container mt-2 pb-2">
               <h1
                 className="mb-4 pb-2"
-                style={{ borderBottom: "1px solid #ccc" }}
+                style={{ borderBottom: "1px solid #ccc"}}
               >
                 <i className="fas fa-layer-group"></i> &nbsp;<b>Task Circus</b>
               </h1>
 
-              <div className="col-12 card-deck">
+              <div className="col-12 card-deck mt-2 pb-2">
                 <div className="row">
                   <ToDo data={todos} />
 
-                  <Doing />
+                  <Doing data={doing} />
 
-                  <Completed />
+                  <Completed data={completed} />
                 </div>
               </div>
             </div>

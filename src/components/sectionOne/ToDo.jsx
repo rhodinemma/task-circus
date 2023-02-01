@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import moses from "../../assets/moses.jpeg";
 import rhodin from "../../assets/rhodin.jpg";
-import TaskModal from "../modal/index";
+import { Modal }  from "react-bootstrap";
 
 const ToDo = ({ data }) => {
   console.log(data);
-  const [modalShow, setModalShow] = useState(false);
+  
+  const [todoModal ,setToDoModal] = useState(false);
+  const handleToDoClose =()=> setToDoModal(false);
+  
+
   return (
     <>
       <div
@@ -25,13 +29,16 @@ const ToDo = ({ data }) => {
               >
                 <div
                   className="card-body border-bottom p-3"
-                  onClick={() => setModalShow(true)}
+                  onClick={() => setToDoModal(true)}
                 >
                   <h5 className="card-title">{todo.title}</h5>
                   <div className="bottom--part mt-4 text-end">
                     <small
                       className="bg-danger p-1 text-white mt-2"
                       style={{ borderRadius: "0.5rem", float: "left" }}
+                      data-bs-toggle="tooltip"
+                      data-bs-html="true"
+                      title={todo.date}
                     >
                       {todo.date}
                     </small>
@@ -41,6 +48,9 @@ const ToDo = ({ data }) => {
                       className="rounded-circle mt-2"
                       width="30px"
                       height="30px"
+                      data-bs-toggle="tooltip"
+                      data-bs-html="true"
+                      title="mosesmulumba"
                     />
                     <img
                       src={rhodin}
@@ -48,6 +58,9 @@ const ToDo = ({ data }) => {
                       className="rounded-circle mt-2"
                       width="30px"
                       height="30px"
+                      data-bs-toggle="tooltip"
+                      data-bs-html="true"
+                      title="rhodinemma"
                     />
                   </div>
                 </div>
@@ -55,6 +68,21 @@ const ToDo = ({ data }) => {
             </div>
           </>
         ))}
+        <Modal
+            keyboard={false}
+            show={todoModal}
+            onHide={handleToDoClose}
+            style={{minHeight:"15rem"}}
+          >
+          <Modal.Header closeButton>
+          <Modal.Title><h2 className='mt-3'>ToDo Section</h2></Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h3>Custom Domain for learning apps</h3>
+            <p>Setup custom domain for learning apps</p>
+
+          </Modal.Body>
+        </Modal>
         <div className="mt-1 text-end">
           <button
             type="button"
@@ -101,7 +129,7 @@ const ToDo = ({ data }) => {
         </div>
       </div>
 
-      <TaskModal show={modalShow} onHide={() => setModalShow(false)} />
+  
     </>
   );
 };
