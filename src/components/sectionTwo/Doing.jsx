@@ -1,11 +1,12 @@
 import React , {useState} from "react";
 import moses from "../../assets/moses.jpeg";
 import rhodin from "../../assets/rhodin.jpg";
-import TaskModal from "../modal/index";
+import Modal from "react-bootstrap/Modal";
 import "../../App.css";
 
 const Doing = ({data}) => {
-  const [modalShow , setModalShow]  = useState(false);
+  const [doingModal, setDoingModal] = useState(false);
+  const handleDoingClose =()=> setDoingModal(false);
   return (
     <>
       <div
@@ -20,7 +21,7 @@ const Doing = ({data}) => {
             <div
               className="card border border-1 mb-2"
               style={{ width: "20rem", borderRadius: "0.5rem" }}
-              onClick = {()=> setModalShow(true)}
+              onClick = {()=> setDoingModal(true)}
               key={index}
             >
               <div className="card-body">
@@ -29,23 +30,32 @@ const Doing = ({data}) => {
                   <small
                     className="bg-warning p-1 mt-2"
                     style={{ borderRadius: "0.5rem", float: "left" }}
+                    data-bs-toggle="tooltip"
+                    data-bs-html="true"
+                    title={doing.date}
                   >
                     {doing.date}
                   </small>
                   <img
-                    src={moses}
-                    alt="dp"
-                    className="rounded-circle mt-2"
-                    width="30px"
-                    height="30px"
-                  />
-                  <img
-                    src={rhodin}
-                    alt="dp"
-                    className="rounded-circle mt-2"
-                    width="30px"
-                    height="30px"
-                  />
+                      src={moses}
+                      alt="dp"
+                      className="rounded-circle mt-2"
+                      width="30px"
+                      height="30px"
+                      data-bs-toggle="tooltip"
+                      data-bs-html="true"
+                      title="mosesmulumba"
+                    />
+                    <img
+                      src={rhodin}
+                      alt="dp"
+                      className="rounded-circle mt-2"
+                      width="30px"
+                      height="30px"
+                      data-bs-toggle="tooltip"
+                      data-bs-html="true"
+                      title="rhodinemma"
+                    />
                 </div>
               </div>
             </div> 
@@ -62,10 +72,19 @@ const Doing = ({data}) => {
             </div>
          </div>
       </div>
-      <TaskModal 
-      show={modalShow}  
-      onHide = {() => setModalShow(false)} 
-      />
+      <Modal
+                keyboard={false}
+                show={doingModal} 
+                onHide={handleDoingClose}
+              >
+              <Modal.Header closeButton>
+              <Modal.Title><h2 className='mt-3'>Doing Section</h2></Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <h3>User Onboarding</h3>
+                <p>Orientation for new users</p>
+              </Modal.Body>
+          </Modal> 
     </>
   );
 };
