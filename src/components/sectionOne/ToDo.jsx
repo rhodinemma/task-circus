@@ -1,14 +1,26 @@
 import React, { useState } from "react";
 import moses from "../../assets/moses.jpeg";
 import rhodin from "../../assets/rhodin.jpg";
-import { Modal }  from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 
 const ToDo = ({ data }) => {
-  console.log(data);
-  
-  const [todoModal ,setToDoModal] = useState(false);
-  const handleToDoClose =()=> setToDoModal(false);
-  
+  const [tasktitle, setTaskTitle] = useState("");
+  const [taskDescription, setTaskDescription] = useState("");
+  const [inputModal, setInputModal] = useState(false);
+  const handleInputModalClose = () => setInputModal(false);
+
+  // function to submit a new task
+  const submitTask = () => {
+    // this adds a new task to our todos array
+    data.push({
+      title: tasktitle,
+      description: taskDescription,
+      date: "Feb 22",
+    });
+
+    // after adding a new task, close the input modal
+    setInputModal(false);
+  };
 
   return (
     <>
@@ -68,31 +80,18 @@ const ToDo = ({ data }) => {
             </div>
           </>
         ))}
-        <Modal
-            keyboard={false}
-            show={todoModal}
-            onHide={handleToDoClose}
-            style={{minHeight:"15rem"}}
-          >
-          <Modal.Header closeButton>
-          <Modal.Title><h2 className='mt-3'>ToDo Section</h2></Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <h3>Custom Domain for learning apps</h3>
-            <p>Setup custom domain for learning apps</p>
 
-          </Modal.Body>
-        </Modal>
         <div className="mt-1 text-end">
           <button
             type="button"
-            className="mb-1 w-75 h-2 text-muted"
+            className="mb-1 w-100 h-2 text-muted"
             style={{
               borderRadius: "0.3rem",
               maxHeight: "auto",
               borderStyle: "none",
               float: "left",
             }}
+            onClick={() => setInputModal(true)}
           >
             <i
               className="fas fa-plus mt-1 text-muted"
@@ -100,36 +99,50 @@ const ToDo = ({ data }) => {
             ></i>
             Add Task
           </button>
-          <div className="symbols" style={{ float: "left" }}>
-            <i
-              className="material-icons text-muted"
-              data-bs-toggle="tooltip"
-              data-bs-html="true"
-              title="assignments"
-            >
-              assignment
-            </i>
-            <span
-              className="material-symbols-outlined"
-              data-bs-toggle="tooltip"
-              data-bs-html="true"
-              title="recommend"
-            >
-              recommend
-            </span>
-            <span
-              className="material-symbols-outlined"
-              data-bs-toggle="tooltip"
-              data-bs-html="true"
-              title="group_work"
-            >
-              group_work
-            </span>
-          </div>
         </div>
-      </div>
 
-  
+        <Modal
+          keyboard={false}
+          show={inputModal}
+          onHide={handleInputModalClose}
+          style={{ minHeight: "15rem" }}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>
+              <h2 className="mt-3">Add task</h2>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="mb-3">
+              <label for="exampleFormControlInput1" className="form-label">
+                Task Title
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                onChange={(e) => setTaskTitle(e.target.value)}
+              />
+            </div>
+            <div className="mb-3">
+              <label for="exampleFormControlTextarea1" className="form-label">
+                Task Description
+              </label>
+              <textarea
+                className="form-control"
+                id="exampleFormControlTextarea1"
+                rows="3"
+                onChange={(e) => setTaskDescription(e.target.value)}
+              ></textarea>
+            </div>
+            <button
+              className="mt-3 btn btn-primary"
+              onClick={() => submitTask()}
+            >
+              Submit task
+            </button>
+          </Modal.Body>
+        </Modal>
+      </div>
     </>
   );
 };

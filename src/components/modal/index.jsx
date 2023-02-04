@@ -1,30 +1,32 @@
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
+import React, { useState } from "react";
+import { Modal } from "react-bootstrap";
 
-export default function TaskModal(props) {
+const TaskModal = ({
+  modalTaskTile,
+  modalTaskDescription,
+  todoModal,
+  handleToDoClose,
+}) => {
+  const [todoModal, setToDoModal] = useState(false);
+  const handleToDoClose = () => setToDoModal(false);
   return (
     <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
+      keyboard={false}
+      show={todoModal}
+      onHide={handleToDoClose}
+      style={{ minHeight: "15rem" }}
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
+        <Modal.Title>
+          <h2 className="mt-3">Viewing Task</h2>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>Centered Modal</h4>
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
-        </p>
+        <h3>{modalTaskTile}</h3>
+        <p>{modalTaskDescription}</p>
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
     </Modal>
   );
-}
+};
+
+export default TaskModal;
