@@ -1,0 +1,6 @@
+.cards-top{
+    max-height: 350px;
+    overflow: scroll;
+    margin-bottom: 10px;
+    -webkit-overflow-scrolling: touch;
+}

@@ -68,8 +68,8 @@ function App() {
     <>
       {loading ? (
         <center>
-          <div class="spinner-border mt-5 text-center " role="status">
-            <span class="visually-hidden">Loading...</span>
+          <div className="spinner-border mt-5 text-center " role="status">
+            <span className="visually-hidden">Loading...</span>
           </div>
         </center>
       ) : (
@@ -85,11 +85,11 @@ function App() {
 
               <div className="col-12 card-deck mt-2 pb-2">
                 <div className="row">
-                  <ToDo data={todos} />
+                    <ToDo data={todos} />
 
-                  <Doing data={doing} />
+                    <Doing data={doing} />
 
-                  <Completed data={completed} />
+                    <Completed data={completed} />
                 </div>
               </div>
             </div>
