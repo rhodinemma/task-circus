@@ -6,6 +6,7 @@ import { Modal } from "react-bootstrap";
 const Completed = ({ data }) => {
   const [tasktitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
+  const [taskDate,setTaskDate] = useState('');
   const [inputModal, setInputModal] = useState(false);
   const handleInputModalClose = () => setInputModal(false);
 
@@ -15,7 +16,7 @@ const Completed = ({ data }) => {
     data.push({
       title: tasktitle,
       description: taskDescription,
-      date: "Feb 22",
+      date: taskDate,
     });
 
     // after adding a new task, close the input modal
@@ -31,6 +32,7 @@ const Completed = ({ data }) => {
         <h1 className="card-header mb-3" style={{ borderRadius: "0.7rem" }}>
           <b>Completed</b>
         </h1>
+      <div className="cards-top">
         {data.map((completed, index) => (
           <>
             <div
@@ -76,6 +78,7 @@ const Completed = ({ data }) => {
             </div>
           </>
         ))}
+      </div>
         <div className="mt-1 text-end">
           <button
             type="button"
@@ -127,6 +130,16 @@ const Completed = ({ data }) => {
                 rows="3"
                 onChange={(e) => setTaskDescription(e.target.value)}
               ></textarea>
+            </div>
+            <div className="mb-3">
+              <label for="exampleFormControlInput1" className="form-label">
+                Task Date
+              </label>
+              <input
+                type="date"
+                className="form-control"
+                onChange={(e) => setTaskDate(e.target.value)}
+              />
             </div>
             <button
               className="mt-3 btn btn-primary"

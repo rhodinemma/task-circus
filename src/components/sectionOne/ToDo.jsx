@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import moses from "../../assets/moses.jpeg";
 import rhodin from "../../assets/rhodin.jpg";
 import { Modal } from "react-bootstrap";
+import "../../index.css";
 
 const ToDo = ({ data }) => {
   const [tasktitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
+  const [taskDate, setTaskDate] = useState("");
   const [inputModal, setInputModal] = useState(false);
   const handleInputModalClose = () => setInputModal(false);
 
@@ -15,7 +17,7 @@ const ToDo = ({ data }) => {
     data.push({
       title: tasktitle,
       description: taskDescription,
-      date: "Feb 22",
+      date: taskDate,
     });
 
     // after adding a new task, close the input modal
@@ -31,55 +33,57 @@ const ToDo = ({ data }) => {
         <h1 className="card-header mb-3" style={{ borderRadius: "0.7rem" }}>
           <b>To Do</b>
         </h1>
-        {data.map((todo, index) => (
-          <>
-            <div className="cards">
-              <div
-                className="card border mb-2"
-                style={{ width: "20rem", borderRadius: "0.5rem" }}
-                key={index}
-              >
+        <div className="cards-top">
+          {data.map((todo, index) => (
+            <>
+              <div className="cards">
                 <div
-                  className="card-body border-bottom p-3"
-                  onClick={() => setToDoModal(true)}
+                  className="card border mb-2"
+                  style={{ width: "20rem", borderRadius: "0.5rem" }}
+                  key={index}
                 >
-                  <h5 className="card-title">{todo.title}</h5>
-                  <div className="bottom--part mt-4 text-end">
-                    <small
-                      className="bg-danger p-1 text-white mt-2"
-                      style={{ borderRadius: "0.5rem", float: "left" }}
-                      data-bs-toggle="tooltip"
-                      data-bs-html="true"
-                      title={todo.date}
-                    >
-                      {todo.date}
-                    </small>
-                    <img
-                      src={moses}
-                      alt="dp"
-                      className="rounded-circle mt-2"
-                      width="30px"
-                      height="30px"
-                      data-bs-toggle="tooltip"
-                      data-bs-html="true"
-                      title="mosesmulumba"
-                    />
-                    <img
-                      src={rhodin}
-                      alt="dp"
-                      className="rounded-circle mt-2"
-                      width="30px"
-                      height="30px"
-                      data-bs-toggle="tooltip"
-                      data-bs-html="true"
-                      title="rhodinemma"
-                    />
+                  <div
+                    className="card-body border-bottom p-3"
+                    onClick={() => setToDoModal(true)}
+                  >
+                    <h5 className="card-title">{todo.title}</h5>
+                    <div className="bottom--part mt-4 text-end">
+                      <small
+                        className="bg-danger p-1 text-white mt-2"
+                        style={{ borderRadius: "0.5rem", float: "left" }}
+                        data-bs-toggle="tooltip"
+                        data-bs-html="true"
+                        title={todo.date}
+                      >
+                        {todo.date}
+                      </small>
+                      <img
+                        src={moses}
+                        alt="dp"
+                        className="rounded-circle mt-2"
+                        width="30px"
+                        height="30px"
+                        data-bs-toggle="tooltip"
+                        data-bs-html="true"
+                        title="mosesmulumba"
+                      />
+                      <img
+                        src={rhodin}
+                        alt="dp"
+                        className="rounded-circle mt-2"
+                        width="30px"
+                        height="30px"
+                        data-bs-toggle="tooltip"
+                        data-bs-html="true"
+                        title="rhodinemma"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </>
-        ))}
+            </>
+          ))}
+        </div>
 
         <div className="mt-1 text-end">
           <button
@@ -124,7 +128,11 @@ const ToDo = ({ data }) => {
               />
             </div>
             <div className="mb-3">
-              <label for="exampleFormControlTextarea1" className="form-label">
+              <label
+                for="exampleFormControlTextarea1"
+                className="form-label"
+                required
+              >
                 Task Description
               </label>
               <textarea
@@ -133,6 +141,20 @@ const ToDo = ({ data }) => {
                 rows="3"
                 onChange={(e) => setTaskDescription(e.target.value)}
               ></textarea>
+            </div>
+            <div className="mb-3">
+              <label
+                for="exampleFormControlInput1"
+                className="form-label"
+                required
+              >
+                Task Date
+              </label>
+              <input
+                type="date"
+                className="form-control"
+                onChange={(e) => setTaskDate(e.target.value)}
+              />
             </div>
             <button
               className="mt-3 btn btn-primary"
