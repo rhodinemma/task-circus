@@ -11,7 +11,40 @@ const Doing = ({ data }) => {
   const handleInputModalClose = () => setInputModal(false);
 
   // function to submit a new task
-  const submitTask = () => {
+  const submitTask = (e) => {
+    e.preventDefault();
+    //fill in the empty fields 
+    if (!tasktitle && !taskDescription && !taskDate){
+      Swal.fire({
+        icon: "error",
+        title: "Oops..",
+        text: "Fill in the task tile , description and date"
+      })
+    }else if(tasktitle && !taskDescription && !taskDate){
+    Swal.fire({
+      icon: "error",
+      title: "Oops..",
+      text: "Fill in the task description and date"
+    })
+  }else if(!tasktitle && taskDescription && !taskDate){
+    Swal.fire({
+      icon: "error",
+      title: "Oops..",
+      text: "Fill in the task tile and date"
+    })
+  }else if(tasktitle && taskDescription && !taskDate){
+    Swal.fire({
+      icon: "error",
+      title: "Oops..",
+      text: "Fill in the task date"
+    })
+  }else{
+    onSave({taskDate,tasktitle,taskDescription})
+  }
+  //this will add the new date ,description and title
+  setTaskDate('')
+  setTaskDescription('')
+  setTaskTitle('')
     // this adds a new task to our todos array
     data.push({
       title: tasktitle,
@@ -110,6 +143,7 @@ const Doing = ({ data }) => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
+           <form onSubmit={submitTask}>
             <div className="mb-3">
               <label for="exampleFormControlInput1" className="form-label">
                 Task Title
@@ -150,6 +184,7 @@ const Doing = ({ data }) => {
             >
               Submit task
             </button>
+           </form>
           </Modal.Body>
         </Modal>
       </div>

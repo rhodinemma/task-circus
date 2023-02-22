@@ -3,6 +3,7 @@ import moses from "../../assets/moses.jpeg";
 import rhodin from "../../assets/rhodin.jpg";
 import { Modal } from "react-bootstrap";
 import "../../index.css";
+import Swal from "sweetalert2";
 
 const ToDo = ({ data }) => {
   const [tasktitle, setTaskTitle] = useState("");
@@ -12,7 +13,40 @@ const ToDo = ({ data }) => {
   const handleInputModalClose = () => setInputModal(false);
 
   // function to submit a new task
-  const submitTask = () => {
+  const submitTask = (e) => {
+    e.preventDefault();
+    //fill in the empty fields 
+    if (!tasktitle && !taskDescription && !taskDate){
+      Swal.fire({
+        icon: "error",
+        title: "Oops..",
+        text: "Fill in the task tile , description and date"
+      })
+    }else if(tasktitle && !taskDescription && !taskDate){
+    Swal.fire({
+      icon: "error",
+      title: "Oops..",
+      text: "Fill in the task description and date"
+    })
+  }else if(!tasktitle && taskDescription && !taskDate){
+    Swal.fire({
+      icon: "error",
+      title: "Oops..",
+      text: "Fill in the task tile and date"
+    })
+  }else if(tasktitle && taskDescription && !taskDate){
+    Swal.fire({
+      icon: "error",
+      title: "Oops..",
+      text: "Fill in the task date"
+    })
+  }else{
+    onSave({taskDate,tasktitle,taskDescription})
+  }
+    //this will add the new date ,description and title
+  setTaskDate('')
+  setTaskDescription('')
+  setTaskTitle('')
     // this adds a new task to our todos array
     data.push({
       title: tasktitle,
@@ -117,51 +151,48 @@ const ToDo = ({ data }) => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <div className="mb-3">
-              <label for="exampleFormControlInput1" className="form-label">
-                Task Title
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                onChange={(e) => setTaskTitle(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <label
-                for="exampleFormControlTextarea1"
-                className="form-label"
-                required
+            <form onSubmit={submitTask}>
+              <div className="mb-3">
+                <label for="exampleFormControlInput1" className="form-label">
+                  Task Title
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  onChange={(e) => setTaskTitle(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <label for="exampleFormControlTextarea1" className="form-label">
+                  Task Description
+                </label>
+                <textarea
+                  className="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                  onChange={(e) => setTaskDescription(e.target.value)}
+                  required
+                ></textarea>
+              </div>
+              <div className="mb-3">
+                <label for="exampleFormControlInput1" className="form-label">
+                  Task Date
+                </label>
+                <input
+                  type="date"
+                  className="form-control"
+                  onChange={(e) => setTaskDate(e.target.value)}
+                  required
+                />
+              </div>
+              <button
+                className="mt-3 btn btn-primary"
+                onClick={() => submitTask()}
               >
-                Task Description
-              </label>
-              <textarea
-                className="form-control"
-                id="exampleFormControlTextarea1"
-                rows="3"
-                onChange={(e) => setTaskDescription(e.target.value)}
-              ></textarea>
-            </div>
-            <div className="mb-3">
-              <label
-                for="exampleFormControlInput1"
-                className="form-label"
-                required
-              >
-                Task Date
-              </label>
-              <input
-                type="date"
-                className="form-control"
-                onChange={(e) => setTaskDate(e.target.value)}
-              />
-            </div>
-            <button
-              className="mt-3 btn btn-primary"
-              onClick={() => submitTask()}
-            >
-              Submit task
-            </button>
+                Submit task
+              </button>
+            </form>
           </Modal.Body>
         </Modal>
       </div>
