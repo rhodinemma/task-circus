@@ -15,47 +15,52 @@ const ToDo = ({ data }) => {
   // function to submit a new task
   const submitTask = (e) => {
     e.preventDefault();
-    //fill in the empty fields 
-    if (!tasktitle && !taskDescription && !taskDate){
+    //fill in the empty fields
+    if (tasktitle === "" && taskDescription === "" && taskDate === "") {
       Swal.fire({
         icon: "error",
         title: "Oops..",
-        text: "Fill in the task tile , description and date"
-      })
-    }else if(tasktitle && !taskDescription && !taskDate){
-    Swal.fire({
-      icon: "error",
-      title: "Oops..",
-      text: "Fill in the task description and date"
-    })
-  }else if(!tasktitle && taskDescription && !taskDate){
-    Swal.fire({
-      icon: "error",
-      title: "Oops..",
-      text: "Fill in the task tile and date"
-    })
-  }else if(tasktitle && taskDescription && !taskDate){
-    Swal.fire({
-      icon: "error",
-      title: "Oops..",
-      text: "Fill in the task date"
-    })
-  }else{
-    onSave({taskDate,tasktitle,taskDescription})
-  }
-    //this will add the new date ,description and title
-  setTaskDate('')
-  setTaskDescription('')
-  setTaskTitle('')
-    // this adds a new task to our todos array
-    data.push({
-      title: tasktitle,
-      description: taskDescription,
-      date: taskDate,
-    });
+        text: "Fill in the task title , description and date",
+      });
+    } else if (tasktitle && taskDescription === "" && taskDate === "") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops..",
+        text: "Fill in the task description and date",
+      });
+    } else if (tasktitle === "" && taskDescription && taskDate === "") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops..",
+        text: "Fill in the task tile and date",
+      });
+    } else if (tasktitle && taskDescription && taskDate === "") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops..",
+        text: "Fill in the task date",
+      });
+    } else {
+      //this will add the new date ,description and title
+      setTaskDate("");
+      setTaskDescription("");
+      setTaskTitle("");
+      // this adds a new task to our todos array
+      data.push({
+        title: tasktitle,
+        description: taskDescription,
+        date: taskDate,
+      });
 
-    // after adding a new task, close the input modal
-    setInputModal(false);
+      // after adding a new task, close the input modal
+      setInputModal(false);
+
+      Swal.fire({
+        icon: "success",
+        title: "Successful",
+        text: "Created task successfully",
+      });
+    }
   };
 
   return (
@@ -160,7 +165,6 @@ const ToDo = ({ data }) => {
                   type="text"
                   className="form-control"
                   onChange={(e) => setTaskTitle(e.target.value)}
-                  required
                 />
               </div>
               <div className="mb-3">
@@ -172,7 +176,6 @@ const ToDo = ({ data }) => {
                   id="exampleFormControlTextarea1"
                   rows="3"
                   onChange={(e) => setTaskDescription(e.target.value)}
-                  required
                 ></textarea>
               </div>
               <div className="mb-3">
@@ -183,7 +186,6 @@ const ToDo = ({ data }) => {
                   type="date"
                   className="form-control"
                   onChange={(e) => setTaskDate(e.target.value)}
-                  required
                 />
               </div>
               <button
