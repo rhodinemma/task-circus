@@ -6,11 +6,19 @@ import "../../index.css";
 import Swal from "sweetalert2";
 
 const ToDo = ({ data }) => {
+  let todo;
   const [tasktitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [taskDate, setTaskDate] = useState("");
   const [inputModal, setInputModal] = useState(false);
+  const [viewModal, setViewModal] = useState(false);
   const handleInputModalClose = () => setInputModal(false);
+  const handleViewModalClose = () => setViewModal(false);
+
+  const [viewId, setViewId] = useState("");
+  const [viewTitle, setViewTitle] = useState("");
+  const [viewDescription, setViewDescription] = useState("");
+  const [viewDate, setViewDate] = useState("");
 
   // function to submit a new task
   const submitTask = (e) => {
@@ -63,6 +71,14 @@ const ToDo = ({ data }) => {
     }
   };
 
+  const getSingleTodo = (id) => {
+    todo = data.find((todo) => todo.id === id);
+    setViewId(todo.id);
+    setViewTitle(todo.title);
+    setViewDescription(todo.description);
+    setViewDate(todo.date);
+  };
+
   return (
     <>
       <div
@@ -80,12 +96,22 @@ const ToDo = ({ data }) => {
                   className="card border mb-2"
                   style={{ width: "20rem", borderRadius: "0.5rem" }}
                   key={index}
+                  onClick={() => {
+                    getSingleTodo(todo.id);
+                  }}
                 >
                   <div
                     className="card-body border-bottom p-3"
                     onClick={() => setToDoModal(true)}
                   >
-                    <h5 className="card-title">{todo.title}</h5>
+                    <h5
+                      className="card-title"
+                      onClick={() => {
+                        setViewModal(true);
+                      }}
+                    >
+                      {todo.title}
+                    </h5>
                     <div className="bottom--part mt-4 text-end">
                       <small
                         className="bg-danger p-1 text-white mt-2"
@@ -143,6 +169,41 @@ const ToDo = ({ data }) => {
             Add Task
           </button>
         </div>
+
+        {viewModal && (
+          <Modal
+            keyboard={false}
+            show={viewModal}
+            onHide={handleViewModalClose}
+            style={{ minHeight: "15rem" }}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>
+                <h2 className="mt-3">Viewing task #{viewId}</h2>
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div className="mb-3">
+                <label for="exampleFormControlInput1" className="form-label">
+                  <b>Task Title</b>
+                </label>
+                <h5>{viewTitle}</h5>
+              </div>
+              <div className="mb-3">
+                <label for="exampleFormControlTextarea1" className="form-label">
+                  <b>Task Description</b>
+                </label>
+                <h5>{viewDescription}</h5>
+              </div>
+              <div className="mb-3">
+                <label for="exampleFormControlInput1" className="form-label">
+                  <b>Task Date</b>
+                </label>
+                <h5>{viewDate}</h5>
+              </div>
+            </Modal.Body>
+          </Modal>
+        )}
 
         <Modal
           keyboard={false}

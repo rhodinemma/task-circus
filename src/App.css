@@ -1,9 +1,11 @@
 * {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Signika', sans-serif;
 }
+
 .card-body:hover {
     cursor: pointer;
 }
-.symbols:hover{
+
+.symbols:hover {
     cursor: pointer;
 }
