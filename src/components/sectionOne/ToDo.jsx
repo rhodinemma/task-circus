@@ -12,14 +12,16 @@ const ToDo = ({ data }) => {
   const [taskDate, setTaskDate] = useState("");
   const [inputModal, setInputModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
+  const [comment, setComment] = useState("");
   const handleInputModalClose = () => setInputModal(false);
   const handleViewModalClose = () => setViewModal(false);
 
+  //create functions for the view when the card title is clicked
   const [viewId, setViewId] = useState("");
   const [viewTitle, setViewTitle] = useState("");
   const [viewDescription, setViewDescription] = useState("");
   const [viewDate, setViewDate] = useState("");
-
+  
   // function to submit a new task
   const submitTask = (e) => {
     e.preventDefault();
@@ -77,7 +79,16 @@ const ToDo = ({ data }) => {
     setViewTitle(todo.title);
     setViewDescription(todo.description);
     setViewDate(todo.date);
+    setComment(doing.comment);
   };
+
+   const saveComment = () => {
+    e.preventDefault();
+    data.push({
+      comment: comment,
+    });
+    setComment("");
+  }
 
   return (
     <>
@@ -102,7 +113,7 @@ const ToDo = ({ data }) => {
                 >
                   <div
                     className="card-body border-bottom p-3"
-                    onClick={() => setToDoModal(true)}
+                    
                   >
                     <h5
                       className="card-title"
@@ -153,20 +164,18 @@ const ToDo = ({ data }) => {
         <div className="mt-1 text-end">
           <button
             type="button"
-            className="mb-1 w-100 h-2 text-muted"
+            className="mb-1 w-100 h-2 text-muted b"
             style={{
               borderRadius: "0.3rem",
               maxHeight: "auto",
               borderStyle: "none",
-              float: "left",
             }}
             onClick={() => setInputModal(true)}
-          >
+          > Add Task &nbsp;
             <i
               className="fas fa-plus mt-1 text-muted"
-              style={{ float: "left" }}
-            ></i>
-            Add Task
+              style={{ float: "center" }}
+           /> 
           </button>
         </div>
 
@@ -183,23 +192,32 @@ const ToDo = ({ data }) => {
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <div className="mb-3">
-                <label for="exampleFormControlInput1" className="form-label">
-                  <b>Task Title</b>
-                </label>
-                <h5>{viewTitle}</h5>
+               <div>
+                  <div className="mb-1 b">
+                    <h2 className="mb-1">{viewTitle}</h2>
+                  </div>
+                  <div className="mb-1" style={{  display: "flex", justifyContent:"space-between" }} >
+                    <h5 className="mb-1 text-muted">{viewDescription}</h5>
+                    <h5 className="mt-1" style={{float : "right"}}>{viewDate}</h5>
+                  </div>
               </div>
-              <div className="mb-3">
-                <label for="exampleFormControlTextarea1" className="form-label">
-                  <b>Task Description</b>
-                </label>
-                <h5>{viewDescription}</h5>
-              </div>
-              <div className="mb-3">
-                <label for="exampleFormControlInput1" className="form-label">
-                  <b>Task Date</b>
-                </label>
-                <h5>{viewDate}</h5>
+              <div>
+                <h5 className="b mt-3" style={{borderBottom : "0.1px solid #ccc"}}>More activities</h5>
+                <textarea
+                  className="mb-1"
+                  rows={2} width="100%"
+                  placeholder={"write a comment"}
+                  onChange={(e) => setComment(e.target.value)}
+                />
+                <button type="button mt-3"
+                  className="save btn-primary" 
+                  value="save"
+                  style={{ justifyContent: "center", alignContent: "center", display: "flex" }}
+                  onClick={()=> saveComment()}
+                >
+                  Save
+                </button>
+                <p>{comment}</p>
               </div>
             </Modal.Body>
           </Modal>
@@ -253,7 +271,7 @@ const ToDo = ({ data }) => {
                 className="mt-3 btn btn-primary"
                 onClick={() => submitTask()}
               >
-                Submit task
+                Save task
               </button>
             </form>
           </Modal.Body>
