@@ -2,15 +2,26 @@ import React, { useState } from "react";
 import moses from "../../assets/moses.jpeg";
 import rhodin from "../../assets/rhodin.jpg";
 import { Modal } from "react-bootstrap";
+import "../../index.css";
 import Swal from "sweetalert2";
 
 const Completed = ({ data }) => {
+  let completed;
   const [tasktitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [taskDate, setTaskDate] = useState("");
   const [inputModal, setInputModal] = useState(false);
+  const [viewModal, setViewModal] = useState(false);
+  const [comment, setComment] = useState("");
+  const handleViewModalClose = () => setViewModal(false);
   const handleInputModalClose = () => setInputModal(false);
-
+  
+    //create functions for the view when the card title is clicked
+  const [viewId, setViewId] = useState("");
+  const [viewTitle, setViewTitle] = useState("");
+  const [viewDescription, setViewDescription] = useState("");
+  const [viewDate, setViewDate] = useState("");
+  
   // function to submit a new task
   const submitTask = (e) => {
     e.preventDefault();
@@ -44,7 +55,7 @@ const Completed = ({ data }) => {
       setTaskDate("");
       setTaskDescription("");
       setTaskTitle("");
-      // this adds a new task to our todos array
+      // this adds a new task to our completeds array
       data.push({
         title: tasktitle,
         description: taskDescription,
@@ -62,6 +73,23 @@ const Completed = ({ data }) => {
     }
   };
 
+  const getSingleComplete = (id) => {
+    completed = data.find((completed) => completed.id === id);
+    setViewId(completed.id);
+    setViewTitle(completed.title);
+    setViewDescription(completed.description);
+    setViewDate(completed.date);
+     setComment(doing.comment);
+  }
+
+   const saveComment = () => {
+    e.preventDefault();
+    data.push({
+      comment: comment,
+    });
+    setComment("");
+  }
+
   return (
     <>
       <div
@@ -78,10 +106,19 @@ const Completed = ({ data }) => {
                 className="card border border-1 mb-2"
                 style={{ width: "20rem", borderRadius: "0.5rem" }}
                 key={index}
-                onClick={() => setCompletedModal(true)}
+                onClick={() => {
+                  getSingleComplete(completed.id);
+                }}
               >
                 <div className="card-body p-3">
-                  <h5 className="card-title">{completed.title}</h5>
+                  <h5
+                    className="card-title"
+                    onClick={() => {
+                      setViewModal(true);
+                    }}
+                  >
+                    {completed.title}
+                  </h5>
                   <div className="bottom--part mt-4 text-end">
                     <small
                       className="bg-dark p-1 text-white mt-2"
@@ -121,22 +158,65 @@ const Completed = ({ data }) => {
         <div className="mt-1 text-end">
           <button
             type="button"
-            className="mb-1 w-100 h-2 text-muted"
+            className="button mb-1 w-100 h-2 text-muted "
             style={{
               borderRadius: "0.3rem",
               maxHeight: "auto",
               borderStyle: "none",
-              float: "left",
             }}
             onClick={() => setInputModal(true)}
-          >
+          >Add Task &nbsp;
             <i
               className="fas fa-plus mt-1 text-muted"
-              style={{ float: "left" }}
-            ></i>
-            Add Task
+              style={{ float: "center" }}
+            /> 
           </button>
         </div>
+
+        {viewModal && (
+          <Modal
+            keyboard={false}
+            show={viewModal}
+            onHide={handleViewModalClose}
+            style={{ minHeight: "15rem" }}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>
+                <h2 className="mt-3">Viewing task #{viewId}</h2>
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div>
+                  <div className="mb-1 b">
+                    <h2 className="mb-1">{viewTitle}</h2>
+                  </div>
+                  <div className="mb-1" style={{  display: "flex", justifyContent:"space-between" }} >
+                    <h5 className="mb-1 text-muted">{viewDescription}</h5>
+                    <h5 className="mt-1" style={{float : "right"}}>{viewDate}</h5>
+                  </div>
+              </div>
+              <div>
+                <h5 className="b mt-3" style={{borderBottom : "0.1px solid #ccc"}}>More activities</h5>
+                <textarea
+                  className="mb-1"
+                  rows={2} width="100%"
+                  placeholder={"write a comment"}
+                  onChange={(e) => setComment(e.target.value)}
+                />
+                <button type="button mt-3"
+                  className="save btn-primary" 
+                  value="save"
+                  style={{ justifyContent: "center", alignContent: "center", display: "flex" }}
+                  onClick={()=> saveComment()}
+                >
+                  Save
+                </button>
+                <p>{comment}</p>
+              </div>
+            </Modal.Body>
+          </Modal>
+        )}
+
         <Modal
           keyboard={false}
           show={inputModal}
@@ -185,7 +265,7 @@ const Completed = ({ data }) => {
                 className="mt-3 btn btn-primary"
                 onClick={() => submitTask()}
               >
-                Submit task
+                Save task
               </button>
             </form>
           </Modal.Body>

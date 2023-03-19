@@ -1,32 +1,37 @@
-import React, { useState } from "react";
-import { Modal } from "react-bootstrap";
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
-const TaskModal = ({
-  modalTaskTile,
-  modalTaskDescription,
-  todoModal,
-  handleToDoClose,
-}) => {
-  const [todoModal, setToDoModal] = useState(false);
-  const handleToDoClose = () => setToDoModal(false);
+function TaskModal() {
+  const [ taskModal , setTaskModal ] = useState(false);
+  const handleTaskModalClose = () => setTaskModal(false);
+
   return (
-    <Modal
-      keyboard={false}
-      show={todoModal}
-      onHide={handleToDoClose}
-      style={{ minHeight: "15rem" }}
-    >
-      <Modal.Header closeButton>
-        <Modal.Title>
-          <h2 className="mt-3">Viewing Task</h2>
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <h3>{modalTaskTile}</h3>
-        <p>{modalTaskDescription}</p>
-      </Modal.Body>
-    </Modal>
+    <>
+      <Modal show={taskModal} onHide={handleTaskModalClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            <h2 className="mt-3 b" style={{ fontSize: "26px" }}>
+              Viewing Task
+            </h2>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form>
+            <h1 className="mt-3" style={{fontSize: "22px" }}></h1>
+            <h3 className="mt-1 small" style={{fontSize: "20px"}}></h3>
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleTaskModalClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
-};
+}
+
+
 
 export default TaskModal;
